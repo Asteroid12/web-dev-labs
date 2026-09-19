@@ -1,33 +1,100 @@
-<!-- Amogh Iyengar- Lab 2 -->
-
+<!-- Amogh Iyengar - Lab 2, Lab 3, Lab 4 -->
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="styles.css">
-    <head>
-        <meta charset="UTF-8">
-        <title>My First Web Page in branch github not main ok</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>ITMD 541 — Lab 4</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
         <h1>Hello, Web!</h1>
-        <p>This is edited for branch in github</p>
+        <p>A student project for ITMD 541</p>
+    </header>
 
-<!-- Lab 3 Addons-->        
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <main>
         <h2>About this page</h2>
 
         <p>Things I want to learn in ITMD 541 Course</p>
         <ul>
             <li>Full stack web application development</li>
-            <li>Modren Development and deployment practices</li>
+            <li>Modern Development and deployment practices</li>
             <li>API design and integration</li>
         </ul>
 
-        <a href="https://www.semanticscholar.org">->Basically the Google of academic papers and research topics. Has been helpful for both my Undergrad and grad studies </a>
+        <a href="https://www.semanticscholar.org">Basically the Google of academic papers and research topics. Has been helpful for both my Undergrad and grad studies </a>
 
         <br>
 
         <img src="chicago.jpg" alt="My City of living - Chicago, Illinois">
 
-        <br>
+        <table>
+            <caption>My Course Schedule</caption>
+            <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Topic</th>
+                    <th>Lab</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>Development Tools and HTTP Fundamentals</td>
+                    <td>Lab 2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>HTML, CSS and Git Essentials</td>
+                    <td>Lab 3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Advanced HTML: Semantic layout, Tables and Forms</td>
+                    <td>Lab 4</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Advanced CSS: Box model, Selectors and Flexbox</td>
+                    <td>Lab 5</td>
+                </tr>
+            </tbody>
+        </table>
 
-    </body>
+        <h2>Contact Me</h2>
+        <form>
+            <p>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </p>
+            <p>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </p>
+            <p>
+                <label for="msg">Message</label>
+                <textarea id="msg" name="msg"></textarea>
+            </p>
+            <p>
+                <label for="referral">How did you find this page?</label>
+                <select id="referral" name="referral">
+                    <option value="search">Search engine</option>
+                    <option value="social">Social media</option>
+                    <option value="friend">A friend</option>
+                </select>
+            </p>
+            <button type="submit">Send</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Amogh Iyengar</p>
+    </footer>
+</body>
 </html>
