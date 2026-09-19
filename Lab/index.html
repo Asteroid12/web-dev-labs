@@ -89,6 +89,11 @@
                     <option value="friend">A friend</option>
                 </select>
             </p>
+            <p>
+                <label for="zip">ZIP Code</label>
+                <input type="text" id="zip" name="zip" pattern="^\d{5}$" required>
+                <span id="zip-msg" aria-live="polite"></span>
+            </p>
             <button type="submit">Send</button>
         </form>
     </main>
@@ -96,5 +101,6 @@
     <footer>
         <p>&copy; 2026 - Amogh Iyengar</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
