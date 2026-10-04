@@ -26,10 +26,11 @@ h1 {
 }
 
 #main-nav {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  background-color: #0d3b36;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    background-color: #0d3b36;
 }
 
 #main-nav a {
@@ -87,12 +88,9 @@ img {
     z-index: 5;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 600px) {
     #main-nav {
-        flex-direction: column;
-    }
-    h1 {
-        font-size: 1.5rem;
+        flex-direction: row;
     }
 }
 
