@@ -99,3 +99,8 @@ img {
         max-width: 100%;
     }
 }
+
+body.dark {
+  background-color: #111827;
+  color: #f1f5f9;
+}
