@@ -19,27 +19,36 @@ const likeBtn = document.querySelector("#like-btn");
 const likeCount = document.querySelector("#like-count");
 const likeMessage = document.querySelector("#like-message");
 
-const LikeCounter = {
-  likes: 0,
-  increment() {
-    this.likes = this.likes + 1;
-    this.render();
-  },
-  render() {
-    likeCount.textContent = `${this.likes} likes`;
-    if (this.likes >= 10) {
-      likeMessage.textContent = "Wow, thanks for all the likes!";
-    } else if (this.likes >= 5) {
-      likeMessage.textContent = "Glad you like it!";
-    } else {
-      likeMessage.textContent = "";
-    }
+function updateLikeDisplay(count) {
+  likeCount.textContent = `${count} likes`;
+  if (count >= 10) {
+    likeMessage.textContent = "Wow, thanks for all the likes!";
+  } else if (count >= 5) {
+    likeMessage.textContent = "Glad you like it!";
+  } else {
+    likeMessage.textContent = "";
   }
-};
+}
+
+function createLikeCounter() {
+  let likes = 0;  // private — not reachable from outside
+
+  return {
+    increment() {
+      likes++;
+      updateLikeDisplay(likes);
+    },
+    getLikes() {
+      return likes;
+    }
+  };
+}
+
+const counter = createLikeCounter();
 
 if (likeBtn) {
   likeBtn.addEventListener("click", function() {
-    LikeCounter.increment();
+    counter.increment();
   });
 } else {
   console.warn("like-btn not found on this page");
