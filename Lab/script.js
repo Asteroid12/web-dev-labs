@@ -1,4 +1,9 @@
-// Amogh Iyengar : Lab 4, Lab 7, Lab 8
+// Amogh Iyengar : Lab 4, Lab 7, Lab 8, Lab 9, Lab 10
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
+
 const zipInput = document.getElementById("zip");
 const zipMsg = document.getElementById("zip-msg");
 const zipPattern = /^\d{5}$/;
@@ -46,11 +51,12 @@ function updateLikeDisplay(count) {
 }
 
 function createLikeCounter() {
-  let likes = 0;  // private — not reachable from outside
+  let likes = Number(localStorage.getItem("likes")) || 0; 
 
   return {
     increment() {
       likes++;
+      localStorage.setItem("likes", likes);  
       updateLikeDisplay(likes);
     },
     getLikes() {
@@ -60,6 +66,7 @@ function createLikeCounter() {
 }
 
 const counter = createLikeCounter();
+updateLikeDisplay(counter.getLikes()); 
 
 if (likeBtn) {
   likeBtn.addEventListener("click", function() {
@@ -72,6 +79,8 @@ if (likeBtn) {
 const themeBtn = document.querySelector("#theme-btn");
 themeBtn.addEventListener("click", function() {
   document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
 const goals = ["Full stack web application development", "Modern Development and deployment practices", "API design and integration", "Git"];
@@ -102,3 +111,22 @@ async function loadFact() {
 }
 
 factBtn.addEventListener("click", loadFact);
+
+const locationBtn = document.querySelector("#location-btn");
+const locationDisplay = document.querySelector("#location-display");
+
+locationBtn.addEventListener("click", function() {
+  if (!("geolocation" in navigator)) {
+    locationDisplay.textContent = "Geolocation isn't supported.";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    const lat = position.coords.latitude.toFixed(2);
+    const lon = position.coords.longitude.toFixed(2);
+    locationDisplay.textContent = `You're near ${lat}, ${lon}`;
+  }, function(error) {
+    locationDisplay.textContent = "Location access was denied.";
+    console.warn(error);
+  });
+});
