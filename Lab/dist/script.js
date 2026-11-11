@@ -88,8 +88,9 @@ async function loadFact() {
         if (!response.ok) {
             throw new Error("Server responded with an error");
         }
-        const data = await response.json();
+        const data = (await response.json());
         factDisplay.textContent = data.fact;
+        saveToStorage("lastFact", data);
     }
     catch (error) {
         factDisplay.textContent = "Couldn't load a fact right now. Try again.";
@@ -113,3 +114,20 @@ locationBtn.addEventListener("click", function () {
         console.warn(error);
     });
 });
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+function loadFromStorage(key) {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+}
+saveToStorage("savedLikes", counter.getLikes());
+const loadedLikes = loadFromStorage("savedLikes");
+console.log("Generic with number:", loadedLikes, typeof loadedLikes);
+const lastFact = loadFromStorage("lastFact");
+if (lastFact) {
+    console.log("Generic with cat fact:", lastFact.fact, `(${lastFact.length} characters)`);
+}
+else {
+    console.log("Generic with cat fact: no fact saved yet - click Get a Random Fact, then reload");
+}

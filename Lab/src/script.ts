@@ -109,6 +109,7 @@ async function loadFact(): Promise<void> {
     }
     const data = (await response.json()) as CatFact;
     factDisplay.textContent = data.fact;
+    saveToStorage<CatFact>("lastFact", data);
   } catch (error) {
     factDisplay.textContent = "Couldn't load a fact right now. Try again.";
     console.error(error);
@@ -135,3 +136,23 @@ locationBtn.addEventListener("click", function () {
     console.warn(error);
   });
 });
+
+function saveToStorage<T>(key: string, value: T): void {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function loadFromStorage<T>(key: string): T | null {
+  const raw = localStorage.getItem(key);
+  return raw ? JSON.parse(raw) : null;
+}
+
+saveToStorage<number>("savedLikes", counter.getLikes());
+const loadedLikes = loadFromStorage<number>("savedLikes");
+console.log("Generic with number:", loadedLikes, typeof loadedLikes);
+
+const lastFact = loadFromStorage<CatFact>("lastFact");
+if (lastFact) {
+  console.log("Generic with cat fact:", lastFact.fact, `(${lastFact.length} characters)`);
+} else {
+  console.log("Generic with cat fact: no fact saved yet - click Get a Random Fact, then reload");
+}
